@@ -2,7 +2,7 @@
 # Default Options
 BRANCH="master"
 MSF_ROOT="/opt/metasploit/apps/pro/msf3"
-REV=$(curl -s 'https://api.github.com/repos/gen0cide-/sawed_off/commits' | head -n 3 | tail -n 1 | sed 's/\s//g; s/"//g; s/://g; s/,//g; s/^sha//; s/.\{33\}$//;')
+REV=$(curl -s 'https://api.github.com/repos/packetfocus/sawed_off/commits' | head -n 3 | tail -n 1 | sed 's/\s//g; s/"//g; s/://g; s/,//g; s/^sha//; s/.\{33\}$//;')
 # -------------------------------------------------------------------------------------------------
 # Option Parser
 for i in "$@"
@@ -43,8 +43,8 @@ echo "#---------------------------------------------------------------------"
 # Variable Setting
 INC_CLASS="${MSF_ROOT%%/}/lib/rex/post/meterpreter/ui/console/command_dispatcher/priv.rb"
 CLASS_FILE="${MSF_ROOT%%/}/lib/rex/post/meterpreter/ui/console/command_dispatcher/priv/power_shell.rb"
-INC_CLASS_REM="https://raw.githubusercontent.com/gen0cide-/sawed_off/$BRANCH/priv.rb"
-CLASS_FILE_REM="https://raw.githubusercontent.com/gen0cide-/sawed_off/$BRANCH/power_shell.rb"
+INC_CLASS_REM="https://raw.githubusercontent.com/packetfocus/sawed_off/$BRANCH/priv.rb"
+CLASS_FILE_REM="https://raw.githubusercontent.com/packetfocus/sawed_off/$BRANCH/power_shell.rb"
 # -------------------------------------------------------------------------------------------------
 # Test for metasploit install
 if [ ! -f $INC_CLASS ]; then
