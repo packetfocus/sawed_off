@@ -319,7 +319,7 @@ Ref: https://github.com/HarmJ0y/PowerUp
     def cmd_power_scan(*args)
     link = 'https://raw.githubusercontent.com/syphersec/PowerSploit/master/Recon/Invoke-Portscan.ps1'
     output_file, c_time, ps_cmd, tmp_file = ps_setup(args) do
-      print_line(POWER_KATZ_USAGE)
+      print_line(POWER_SCAN_USAGE)
       print_line("-" * 60)
       print("Usage: power_scan -Hosts/-HostsFile -Ports/-PortsFile/-topPorts -threads -oA file \n" +
             "A nmap style implementation in powershell.\n" +
