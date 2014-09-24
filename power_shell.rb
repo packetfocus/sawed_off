@@ -39,23 +39,29 @@ Ref: https://github.com/Veil-Framework/Veil-PowerView
   => It retrieves the local IP of the target.
 
 > power_view Get-NetDomainControllers -domain ACME 
-  => Gets domain controllers
+  => Gets domain controllers. Replacement for nslookup.  
 
 > power_view Invoke-UserHunter -Domain 'ACME'
   => Gets all machines where domain admins are logged in
 
 > power_view Invoke-ShareFinder -Domain ACME -Ping/-NoPing -Delay 60 -HostList Optional.txt
-  => Locate shares across the domain
+  => Locate shares across the domain. Best to supply domain and test ping settings
 
 > power_view Invoke-FindLocalAdminAccess -Domain ACME -Delay 60 -Hostlist optional.txt 
-  => Search domain to find where local user has access
+  => Search domain to find where local user has access. HostList is optional.
 
 > power_view Invoke-ComputerFieldSearch -Field info -Term badge
   => Searches all AD description fields for the defined words
 
-> power_view Invoke-Newview -Domain ACME 
-  => Runs Mubix's Net_view looking to identify domain controllers, 
-  => then local admins, then find where they are logged on
+> power_view -t X Invoke-Netview -Domain ACME -ping/-noping 
+  => Runs Mubix's Net_view looking find all computers, 
+  => then find open shares and who is logged on. Timing 120 is a good start. (-t 120) 
+
+> power_view -t X Invoke-EnumerateLocalAdmins 
+ => Enumerates members of the local Administrators groups
+ => across all machines in the domain. 
+ => options: (-ping, -noping, -Domain, -outfile, -Jitter, -delay, -hostlist) 
+
 }
 
   POWER_SHELL_USAGE = %q{
