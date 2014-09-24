@@ -1,7 +1,7 @@
 ##Overview
 This is a set of patches for Metasploit to allow faster exploitation of Windows hosts through a better PowerShell integration than Metasploit currently allows. (aka I'm sick of having to run individual modules...)
 
-So I decided to be an asshole and just straight patch the `metasploit-framework` libraries for meterpreter.
+So I decided to just straight patch the `metasploit-framework` libraries for meterpreter.
 
 ## Installation
 ####Binary Patch (Most People)
