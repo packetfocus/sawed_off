@@ -62,6 +62,9 @@ Ref: https://github.com/Veil-Framework/Veil-PowerView
  => across all machines in the domain. 
  => options: (-ping, -noping, -Domain, -outfile, -Jitter, -delay, -hostlist) 
 
+> power_view Invoke-MapDomainTrusts
+ => This function gets all trusts for the current domain,
+ => and tries to get all trusts for each domain it finds.
 }
 
   POWER_SHELL_USAGE = %q{
