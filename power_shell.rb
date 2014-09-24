@@ -25,7 +25,7 @@ class Console::CommandDispatcher::Priv::PowerShell
       "power_shell" => "Execute a powershell command.",
       "power_view"  => "Download and execute Veil's PowerView Framework",
       "power_up"    => "Download and execute the PowerUp Framework",
-      "power_katz"  => "Invoke-Mimikatz into memory using PowerShell"
+      "power_katz"  => "Invoke-Mimikatz into memory using PowerShell",
       "power_scan"  => "Invoke-PortScan from meterpreter using PowerShell"
     }
   end
@@ -105,7 +105,7 @@ Note: Works on anything Windows 8.1 and higher. For now, migrate into appropriat
   => Runs against multiple targets
 }
 
-POWER_SCAN_USAGE = %q{
+ POWER_SCAN_USAGE = %q{
 Powershell Invoke-Portscan from Memory
 =============================
 Desc: This is a loose implementation of nmap using powershell.
@@ -116,11 +116,6 @@ Ref:  https://raw.githubusercontent.com/syphersec/PowerSploit/master/Recon/Invok
   => Performs a basic scan and outputs to file
 
 }
-
-
-
-
-
 
   POWER_UP_USAGE = %q{
 Harmj0y PowerUp Utility
@@ -322,7 +317,7 @@ Ref: https://github.com/HarmJ0y/PowerUp
   # PowerShell Portscan using Powersploit
   #  https://raw.githubusercontent.com/syphersec/PowerSploit/master/Recon/Invoke-Portscan.ps1
     def cmd_power_scan(*args)
-    link = ' https://raw.githubusercontent.com/syphersec/PowerSploit/master/Recon/Invoke-Portscan.ps1'
+    link = 'https://raw.githubusercontent.com/syphersec/PowerSploit/master/Recon/Invoke-Portscan.ps1'
     output_file, c_time, ps_cmd, tmp_file = ps_setup(args) do
       print_line(POWER_KATZ_USAGE)
       print_line("-" * 60)
